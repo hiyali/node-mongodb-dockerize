@@ -41,15 +41,19 @@ RUN git clone ssh://git@some-gitlab.com:8080/salam/hunt-crawler-admin.git admin
 RUN cd ./admin && npm i
 RUN cd ./admin && yarn run build:prod
 
-# volume
-VOLUME ["/hunt/db"]
-
 # copy run script
 COPY run.sh /hunt/
 RUN chmod +x /hunt/run.sh
 
+# set timezone
+ENV TZ=America/Los_Angeles # Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # expose
 EXPOSE 5555
 EXPOSE 80
+
+# volume
+VOLUME ["/hunt/db"]
 
 # ENTRYPOINT ["./run.sh"]
