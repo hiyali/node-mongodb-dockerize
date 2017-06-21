@@ -16,6 +16,7 @@ RUN apt install -y nodejs bzip2 libfontconfig # bzip2 for install PhantomJS and 
 RUN apt install -y mongodb
 RUN apt install -y git-core ca-certificates ssh  # ca-certificates & ssh for git clone
 RUN apt install -y cron
+RUN apt install -y tzdata # for set timezone
 RUN apt install -y vim # The reason is that for edit file in docker sometimes
 
 # work folder
@@ -46,8 +47,9 @@ COPY run.sh /hunt/
 RUN chmod +x /hunt/run.sh
 
 # set timezone
-ENV TZ=America/Los_Angeles # Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+ENV TZ=Asia/Shanghai
+RUN echo $TZ | tee /etc/timezone
+RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 # expose
 EXPOSE 5555
