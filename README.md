@@ -28,7 +28,7 @@ docker attach crawler_runner_1
 
 ## docker basic command
 
-#### stop & remove all continaer
+#### stop & remove all container
 ```shell
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
@@ -40,6 +40,11 @@ docker images
 docker rmi <image id> # remove a image
 docker rmi $(docker images | grep "^<none>" | awk -F ' ' '{print $3}') # remove all none named images
 docker rmi $(docker images -q) # remove all images
+```
+
+#### cp file from container
+```shell
+docker cp <containerId>:/file/path/within/container /host/path/target
 ```
 
 #### command officially documentation
