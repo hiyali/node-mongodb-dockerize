@@ -3,7 +3,7 @@
 ## Download & Build
 ```shell
 mkdir -p /hunt/db
-git clone https://github.com/hiyali/nodejs-mongodb-crontab-dockerize.git
+git clone https://github.com/hiyali/node-mongodb-dockerize.git
 docker build -q -t hunt_crawler:v1 crawler-docker/ # remove -q with outputs
 ```
 
@@ -51,4 +51,4 @@ docker cp <containerId>:/file/path/within/container /host/path/target
 [docker docs](https://docs.docker.com/engine/reference/commandline/build/)
 
 ## design
-![Crawler design](https://raw.githubusercontent.com/hiyali/nodejs-mongodb-crontab-dockerize/master/assets/crawler_design.png "Crawler design")
+![Crawler design](https://raw.githubusercontent.com/hiyali/node-mongodb-dockerize/master/assets/crawler_design.png "Crawler design")
